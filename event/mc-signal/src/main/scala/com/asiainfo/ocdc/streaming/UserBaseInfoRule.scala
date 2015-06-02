@@ -15,7 +15,7 @@ class UserBaseInfoRule extends MCLabelRule {
 
     // get user base info by imsi
     //    val user_info_map = CacheFactory.getManager.getHashCacheMap("userinfo:" + imsi)
-    val user_info_map = CacheCenter.getValue("userinfo:" + imsi, null, "hashall", System.currentTimeMillis()).asInstanceOf[Map[String, String]]
+    val user_info_map = CacheCenter.getValue("userinfo:" + imsi, null, "hashall").asInstanceOf[Map[String, String]]
     val info_cols = conf.get("user_info_cols").split(",")
 
     val propMap = scala.collection.mutable.Map[String, String]()
@@ -23,7 +23,7 @@ class UserBaseInfoRule extends MCLabelRule {
       info_cols.foreach(x => {
         var v: String = ""
         user_info_map.get(x) match {
-          case Some(value) => v = value
+          case Some(value) => v = value.asInstanceOf[String]
           case None =>
         }
         propMap += (x -> v)

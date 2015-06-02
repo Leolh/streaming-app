@@ -35,7 +35,7 @@ class SiteRule extends MCLabelRule {
    */
   def largeCellAnalysis(lac: String, ci: String): List[String] = {
     //    val cachedArea = CacheFactory.getManager.getCommonCacheValue("lacci2area", lac+":"+ci)
-    val cachedArea = CacheCenter.getValue("lacci2area", lac + ":" + ci, "hash", System.currentTimeMillis()).asInstanceOf[String]
+    val cachedArea = CacheCenter.getValue("lacci2area", lac + ":" + ci, "hash").asInstanceOf[String]
     if (cachedArea == null || cachedArea.isEmpty) List[String]() else cachedArea.split(",").toList
   }
 }
